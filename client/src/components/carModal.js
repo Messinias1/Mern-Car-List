@@ -11,6 +11,7 @@ import {
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import { addCar } from '../actions/carActions'
+import uuid from 'uuid'
 
 class CarModal extends Component {
     state = {
@@ -26,6 +27,14 @@ class CarModal extends Component {
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault()
+
+        const newCar = {
+
+        }
     }
 
     render() {
@@ -46,6 +55,7 @@ class CarModal extends Component {
                                     id="car"
                                     placholder="Add Car Here"
                                     onChange={this.onChange}/>
+                                    <Button color="secondary" style={{ marginTop: '2rem' }} block>Add Car</Button>
                             </FormGroup>
                         </Form>
                     </ModalBody>
