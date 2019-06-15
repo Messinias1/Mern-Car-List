@@ -33,8 +33,15 @@ class CarModal extends Component {
         e.preventDefault()
 
         const newCar = {
-
+            id: uuid(),
+            name: this.state.name
         }
+
+        // Add car via addCar action
+        this.props.addCar(newCar)
+
+        // close modal
+        this.toggle()
     }
 
     render() {
@@ -65,4 +72,8 @@ class CarModal extends Component {
     }
 }
 
-export default connect()(CarModal)
+const mapStateToProps = state => ({
+    car: state.car
+})
+
+export default connect(mapStateToProps, { addCar })(CarModal)
