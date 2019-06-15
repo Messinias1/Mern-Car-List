@@ -5,3 +5,10 @@ export const getCars = () => {
         type: GET_CARS 
     }           
 }
+
+export const deleteCar = id => {
+    return {
+        type: DELETE_CAR,
+        payload: id 
+    }           
+}

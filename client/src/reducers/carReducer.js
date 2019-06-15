@@ -16,6 +16,11 @@ export default function(state = initialState, action) {
         return {
             ...state
         }
+        case DELETE_CAR:
+            return {
+               ...state,
+               cars: state.cars.filter(car => car.id !== action.payload)
+            }
         default:
             return state      
     }
