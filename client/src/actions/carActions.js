@@ -21,11 +21,12 @@ export const addCar = car => dispatch => {
     }))         
 }
 
-export const deleteCar = id => {
-    return {
-        type: DELETE_CAR,
-        payload: id 
-    }           
+export const deleteCar = id => dispatch => {
+    axios.delete(`/api/cars/${id}`).then(res => 
+        dispatch({
+            type: DELETE_CAR,
+            payload: id
+        }))           
 }
 
 export const setCarsLoading = () => {

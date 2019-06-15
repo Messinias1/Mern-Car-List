@@ -16,7 +16,7 @@ export default function(state = initialState, action) {
         case DELETE_CAR:
             return {
                ...state,
-               cars: state.cars.filter(car => car.id !== action.payload)
+               cars: state.cars.filter(car => car._id !== action.payload)
             }
             case ADD_CAR:
                 return {

@@ -11,8 +11,8 @@ class CarList extends Component {
         this.props.getCars()
     }
 
-    onDeleteClick = (id) => {
-        this.props.deleteCar(id)
+    onDeleteClick = (_id) => {
+        this.props.deleteCar(_id)
     }
 
     render() {
@@ -21,11 +21,11 @@ class CarList extends Component {
     <Container>
         <ListGroup>
             <TransitionGroup className="car-list">
-                {cars.map(({ id, name }) => (
-                    <CSSTransition key={id} timeout={500} classNames="fade">
+                {cars.map(({ _id, name }) => (
+                    <CSSTransition key={_id} timeout={500} classNames="fade">
                         <ListGroupItem>
                             <Button className="remove-btn" color="danger" size="sm"
-                                onClick={this.onDeleteClick.bind(this, id)}>&times;
+                                onClick={this.onDeleteClick.bind(this, _id)}>&times;
                             </Button>
                             {name}
                         </ListGroupItem>
