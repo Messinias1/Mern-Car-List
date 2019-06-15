@@ -11,7 +11,6 @@ import {
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import { addCar } from '../actions/carActions'
-import uuid from 'uuid'
 
 class CarModal extends Component {
     state = {
@@ -33,7 +32,6 @@ class CarModal extends Component {
         e.preventDefault()
 
         const newCar = {
-            id: uuid(),
             name: this.state.name
         }
 

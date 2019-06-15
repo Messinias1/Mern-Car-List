@@ -1,4 +1,3 @@
-import uuid from 'uuid'
 import { GET_CARS, ADD_CAR, DELETE_CAR, CARS_LOADING } from '../actions/types'
 
 const initialState = {
@@ -11,7 +10,8 @@ export default function(state = initialState, action) {
         case GET_CARS: 
         return {
             ...state,
-            cars: action.payload
+            cars: action.payload,
+            loading: false
         }
         case DELETE_CAR:
             return {
@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
                 case CARS_LOADING:
                     return {
                         ...state,
-                        cars: [action.payload, ...state.cars]
+                        loading: true
                     }
         default:
             return state      
