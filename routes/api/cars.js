@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const auth = require('../../middleware/auth')
 
 // Car Model
 const Car = require('../../models/Car')
@@ -15,8 +16,8 @@ router.get('/', (req, res) => (
 
 // @route POST api/cars
 // @desc Create a car
-// @access Public
-router.post('/', (req, res) => {
+// @access Private
+router.post('/', auth, (req, res) => {
     const newCar = new Car({
         name: req.body.name
     })
@@ -26,8 +27,8 @@ router.post('/', (req, res) => {
 
 // @route DELETE api/cars
 // @desc Delete a car
-// @access Public
-router.delete('/:id', (req, res) => {
+// @access Private
+router.delete('/:id', auth, (req, res) => {
     Car.findById(req.params.id)
     .then(car => car.remove().then(() => res.json({success: true})))
     .catch(err => res.status(404).json({success: false}))
