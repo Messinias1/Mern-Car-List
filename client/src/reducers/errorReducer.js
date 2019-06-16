@@ -20,6 +20,7 @@ export default function(state = initialState, action) {
                     status: null,
                     id: null
                 }
-                default: return state
+                default: 
+                    return state
     }
 }
