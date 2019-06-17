@@ -11,11 +11,16 @@ import {
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import { addCar } from '../actions/carActions'
+import PropTypes from 'prop-types'
 
 class CarModal extends Component {
     state = {
         modal: false,
         name: ''
+    }
+
+    static propTypes = {
+        isAuthenticated: PropTypes.bool
     }
 
     toggle = () => {
@@ -45,8 +50,8 @@ class CarModal extends Component {
     render() {
         return (
             <div>
-                <Button color="dark" style={{ marginBottom: '2rem' }}
-                onClick={this.toggle}>Add Car</Button>
+                { this.props.isAuthenticated ? <Button color="dark" style={{ marginBottom: '2rem' }}
+                onClick={this.toggle}>Add Car</Button> : <h4 className="mb-3 ml-4">Please Log In to Manage Cars</h4> }
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}>Add to Car List</ModalHeader>
@@ -71,7 +76,8 @@ class CarModal extends Component {
 }
 
 const mapStateToProps = state => ({
-    car: state.car
+    car: state.car,
+    isAuthenticated: state.auth.isAuthenticated
 })
 
 export default connect(mapStateToProps, { addCar })(CarModal)

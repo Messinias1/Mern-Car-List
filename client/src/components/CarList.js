@@ -7,6 +7,12 @@ import PropTypes from 'prop-types'
 
 class CarList extends Component {
 
+    static propTypes = {
+        getCars: PropTypes.func.isRequired,
+        car: PropTypes.object.isRequired,
+        isAuthenticated: PropTypes.bool
+    }
+
     componentDidMount() {
         this.props.getCars()
     }
@@ -24,9 +30,9 @@ class CarList extends Component {
                 {cars.map(({ _id, name }) => (
                     <CSSTransition key={_id} timeout={500} classNames="fade">
                         <ListGroupItem>
-                            <Button className="remove-btn" color="danger" size="sm"
+                            { this.props.isAuthenticated ? (                            <Button className="remove-btn" color="danger" size="sm"
                                 onClick={this.onDeleteClick.bind(this, _id)}>&times;
-                            </Button>
+                            </Button>) :  ''}
                             {name}
                         </ListGroupItem>
                     </CSSTransition>
@@ -38,13 +44,9 @@ class CarList extends Component {
     }
 }
 
-CarList.propTypes = {
-    getCars: PropTypes.func.isRequired,
-    car: PropTypes.object.isRequired
-}
-
 const mapStateToProps = (state) => ({
-    car: state.car
+    car: state.car,
+    isAuthenticated: state.auth.isAuthenticated
 })
 
 export default connect(mapStateToProps, { getCars, deleteCar })(CarList)
